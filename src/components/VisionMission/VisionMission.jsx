@@ -59,7 +59,7 @@ const VisionMission = () => (
                   <IconComponent className="w-7 h-7" />
                 </div>
                 <h3 className="font-heading text-2xl font-bold text-accent-light mb-3">{c.title}</h3>
-                <p className="text-white/80 text-sm leading-relaxed mb-6">{c.desc}</p>
+                <p className="text-white/80 text-sm leading-relaxed mb-6 text-justify">{c.desc}</p>
                 <ul className="space-y-2.5">
                   {c.points.map((p) => (
                     <li key={p} className="flex items-center gap-2.5 text-sm text-white/75">

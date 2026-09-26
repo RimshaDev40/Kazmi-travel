@@ -49,22 +49,22 @@ const AboutUs = () => (
         >
           <SectionHeading badge="About Us" title="Kazmi Paradise Travel & Tours" align="left" />
 
-          <p className="text-gray-600 leading-relaxed mb-3 text-[0.97rem]">
+          <p className="text-gray-600 leading-relaxed mb-3 text-[0.97rem] text-justify">
             <strong className="text-gray-900">Kazmi Groups of Companies</strong> is a trusted name in Pakistan's travel
             and tourism industry. Our primary travel business, <strong className="text-gray-900">Kazmi Paradise
             Travel &amp; Tours</strong>, has been serving individual travelers, families, and corporate clients for over a decade.
           </p>
-          <p className="text-gray-600 leading-relaxed mb-3 text-[0.97rem]">
+          <p className="text-gray-600 leading-relaxed mb-3 text-[0.97rem] text-justify">
             We specialize in Umrah packages, group air travel, visa services, hotel allotments, and B2B portal
             solutions — making every travel experience seamless, affordable and memorable.
           </p>
-          <p className="text-gray-600 leading-relaxed mb-7 text-[0.97rem]">
+          <p className="text-gray-600 leading-relaxed mb-7 text-[0.97rem] text-justify">
             With a customer-first approach and a team of experienced travel professionals, we deliver
             services you can rely on — from the first enquiry to safe return.
           </p>
 
-          {/* Highlights grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Highlights grid - Balanced Padding & Clean Alignment */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {highlights.map((h, i) => {
               const IconComp = h.icon;
               return (
@@ -74,10 +74,10 @@ const AboutUs = () => (
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="flex items-start gap-3.5 bg-white rounded-2xl p-4.5 shadow-card border border-gray-100
+                  className="flex items-center gap-3 bg-white rounded-2xl p-3.5 px-4 shadow-card border border-gray-100
                              hover:border-accent/40 hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent-dark shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent-dark shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-300 shadow-sm">
                     <IconComp className="w-5 h-5" />
                   </div>
                   <div>

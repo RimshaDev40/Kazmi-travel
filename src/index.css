@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  html  { scroll-behavior: smooth; }
-  body  { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html  { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+  body  { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%; position: relative; }
   img   { display: block; max-width: 100%; }
   a     { text-decoration: none; color: inherit; }
   ul,ol { list-style: none; margin: 0; padding: 0; }

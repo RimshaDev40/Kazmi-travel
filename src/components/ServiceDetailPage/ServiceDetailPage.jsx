@@ -84,7 +84,7 @@ const ServiceDetailPage = ({ service: propService }) => {
               {hero || title}
             </h1>
 
-            <p className="text-white text-base sm:text-lg leading-relaxed mb-9 drop-shadow-md font-medium">
+            <p className="text-white text-base sm:text-lg leading-relaxed mb-9 drop-shadow-md font-medium text-justify">
               {description}
             </p>
 
@@ -129,7 +129,7 @@ const ServiceDetailPage = ({ service: propService }) => {
               >
                 <span className="section-badge mb-3">Service Details</span>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Service Overview</h2>
-                <p className="text-gray-600 leading-relaxed text-base">{intro}</p>
+                <p className="text-gray-600 leading-relaxed text-base text-justify">{intro}</p>
               </motion.div>
 
               {/* Key Features */}
@@ -219,10 +219,11 @@ const ServiceDetailPage = ({ service: propService }) => {
                     <li key={s.id}>
                       <Link
                         to={s.route}
-                        className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${s.route === location.pathname || s.route === `/${serviceId}` || s.id.toString() === serviceId
+                        className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                          s.route === location.pathname || s.route === `/${serviceId}` || s.id.toString() === serviceId
                             ? 'bg-primary text-white font-semibold shadow-md'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
-                          }`}
+                        }`}
                       >
                         <span className="text-base">{s.icon}</span>
                         <span className="truncate">{s.title}</span>

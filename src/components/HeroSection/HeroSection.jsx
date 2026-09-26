@@ -23,32 +23,32 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden w-full"
       style={{ background: 'linear-gradient(135deg,#071420 0%,#0f2438 40%,#1a3c5e 80%,#071420 100%)' }}
     >
-      {/* Background image overlay - Increased Visibility (65% Opacity) */}
+      {/* Background image overlay - High Visibility (65% Opacity) */}
       <div
-        className="absolute inset-0 opacity-65 transition-all duration-700 scale-105"
+        className="absolute inset-0 opacity-65 transition-all duration-700"
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       />
-      {/* Lightened Dark Gradient overlay for 100% photo clarity */}
+      {/* Lightened Dark Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#071420]/85 via-[#0f2438]/60 to-[#071420]/20" />
 
       {/* Dot pattern */}
-      <div className="absolute inset-0 pattern-dots opacity-20" />
+      <div className="absolute inset-0 pattern-dots opacity-20 pointer-events-none" />
 
-      {/* Floating blobs */}
-      <div className="absolute right-[-80px] top-[-100px] w-[500px] h-[500px] rounded-full opacity-[0.08] animate-float"
+      {/* Floating blobs - strictly contained */}
+      <div className="absolute right-0 top-[-100px] w-[400px] h-[400px] rounded-full opacity-[0.08] animate-float pointer-events-none overflow-hidden"
         style={{ background: 'radial-gradient(circle,#c8973a,transparent)' }} />
-      <div className="absolute left-[-60px] bottom-[-80px] w-[350px] h-[350px] rounded-full opacity-[0.06] animate-float-slow"
+      <div className="absolute left-0 bottom-[-80px] w-[300px] h-[300px] rounded-full opacity-[0.06] animate-float-slow pointer-events-none overflow-hidden"
         style={{ background: 'radial-gradient(circle,#245280,transparent)' }} />
 
-      {/* CONTENT - STRICTLY LEFT ALIGNED */}
-      <div className="relative z-10 max-w-[1200px] w-full mx-auto px-6 pt-32 pb-20 text-left">
+      {/* CONTENT - STRICTLY LEFT ALIGNED & FULLY RESPONSIVE */}
+      <div className="relative z-10 max-w-[1200px] w-full mx-auto px-5 sm:px-6 pt-28 sm:pt-32 pb-16 sm:pb-20 text-left">
         <motion.div
           variants={container}
           initial="hidden"
@@ -57,7 +57,7 @@ const HeroSection = () => {
         >
           {/* Badge */}
           <motion.div variants={item}
-            className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent-light px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md self-start shadow-sm"
+            className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent-light px-3.5 py-1.5 rounded-full text-[0.7rem] sm:text-xs font-bold tracking-widest uppercase mb-5 sm:mb-6 backdrop-blur-md self-start shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5 text-accent-light animate-pulse" />
             Trusted Travel &amp; Tourism Experts
@@ -65,26 +65,26 @@ const HeroSection = () => {
 
           {/* Heading */}
           <motion.h1 variants={item}
-            className="font-heading font-extrabold text-white leading-[1.12] mb-5 text-left drop-shadow-lg"
-            style={{ fontSize: 'clamp(2.3rem,5.2vw,4.1rem)' }}
+            className="font-heading font-extrabold text-white leading-[1.14] mb-4 sm:mb-5 text-left drop-shadow-lg"
+            style={{ fontSize: 'clamp(2.1rem, 5.2vw, 4.1rem)' }}
           >
             Your Trusted Partner in{' '}
             <span className="text-gold-gradient">Travel &amp; Tourism</span>
           </motion.h1>
 
-          {/* Description */}
+          {/* Description - Justified on Tablet/Desktop, Clean on Mobile */}
           <motion.p variants={item}
-            className="text-white text-lg leading-relaxed mb-9 max-w-[580px] text-left drop-shadow font-medium"
+            className="text-white text-base sm:text-lg leading-relaxed mb-7 sm:mb-9 max-w-[580px] text-left sm:text-justify drop-shadow font-medium"
           >
             Kazmi Paradise Travel &amp; Tours offers comprehensive travel solutions — Umrah packages,
             visa services, hotel allotments and powerful B2B portals. Let us make your journey unforgettable.
           </motion.p>
 
-          {/* Buttons */}
-          <motion.div variants={item} className="flex flex-wrap items-center justify-start gap-3.5 mb-14 w-full">
+          {/* Buttons - Clean Responsive Flex */}
+          <motion.div variants={item} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 sm:gap-3.5 mb-10 sm:mb-14 w-full max-w-[580px]">
             <button
               onClick={() => scrollTo('services')}
-              className="btn-primary group shadow-2xl"
+              className="btn-primary group shadow-2xl justify-center"
             >
               <Compass className="w-4 h-4" />
               Explore Services
@@ -94,29 +94,29 @@ const HeroSection = () => {
               href={`https://wa.me/${WHATSAPP}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-whatsapp shadow-2xl"
+              className="btn-whatsapp shadow-2xl justify-center"
             >
               <MessageSquare className="w-4 h-4 fill-current" />
               WhatsApp Us
             </a>
-            <button onClick={() => scrollTo('packages')} className="btn-outline backdrop-blur-md bg-black/20 border-white/40">
+            <button onClick={() => scrollTo('packages')} className="btn-outline backdrop-blur-md bg-black/20 border-white/40 justify-center">
               Explore Packages
             </button>
           </motion.div>
 
-          {/* Stats glass bar */}
+          {/* Stats glass bar - 100% No Overlap Responsive Grid */}
           <motion.div
             variants={item}
-            className="grid grid-cols-4 divide-x divide-white/10 rounded-2xl overflow-hidden w-full max-w-[580px] shadow-2xl"
-            style={{ background: 'rgba(7,20,32,0.65)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.18)' }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-y-3 sm:gap-y-0 divide-x-0 sm:divide-x divide-white/10 rounded-2xl overflow-hidden w-full max-w-[580px] shadow-2xl p-3 sm:p-0"
+            style={{ background: 'rgba(7,20,32,0.80)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.18)' }}
           >
             {stats.map((s) => {
               const IconComponent = s.icon;
               return (
-                <div key={s.label} className="flex flex-col items-center py-4 px-2 text-center group">
-                  <IconComponent className="w-4 h-4 text-accent-light/80 mb-1 group-hover:scale-110 transition-transform" />
-                  <span className="font-heading text-accent-light font-extrabold text-2xl leading-none">{s.value}</span>
-                  <span className="text-white/70 text-[0.63rem] uppercase tracking-widest mt-1 font-medium">{s.label}</span>
+                <div key={s.label} className="flex flex-col items-center py-3.5 px-2 text-center group">
+                  <IconComponent className="w-4 h-4 text-accent-light/90 mb-1 group-hover:scale-110 transition-transform" />
+                  <span className="font-heading text-accent-light font-extrabold text-xl sm:text-2xl leading-none">{s.value}</span>
+                  <span className="text-white/80 text-[0.62rem] uppercase tracking-widest mt-1 font-medium">{s.label}</span>
                 </div>
               );
             })}
@@ -126,7 +126,7 @@ const HeroSection = () => {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity z-10"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity z-10"
         onClick={() => scrollTo('about')}
       >
         <div className="w-1.5 h-1.5 rounded-full bg-accent animate-bounce-dot" />
