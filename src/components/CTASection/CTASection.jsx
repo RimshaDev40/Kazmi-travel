@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Plane, ArrowRight, MessageSquare, Compass } from 'lucide-react';
+import { Plane, ArrowRight, Compass } from 'lucide-react';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 
 const WHATSAPP = '923001234567';
 
@@ -50,9 +51,9 @@ const CTASection = () => {
               href={`https://wa.me/${WHATSAPP}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-whatsapp shadow-lg"
+              className="btn-whatsapp shadow-lg flex items-center gap-2"
             >
-              <MessageSquare className="w-4 h-4 fill-current" />
+              <WhatsAppIcon className="w-4 h-4 text-white" fill="white" />
               WhatsApp Us
             </a>
             <button

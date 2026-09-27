@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, MessageSquare, Compass, Award, Users, Layers, Globe } from 'lucide-react';
+import { Sparkles, ArrowRight, Compass, Award, Users, Layers, Globe } from 'lucide-react';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 
 const WHATSAPP = '923001234567';
 
@@ -94,9 +95,9 @@ const HeroSection = () => {
               href={`https://wa.me/${WHATSAPP}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-whatsapp shadow-2xl justify-center"
+              className="btn-whatsapp shadow-2xl justify-center flex items-center gap-2"
             >
-              <MessageSquare className="w-4 h-4 fill-current" />
+              <WhatsAppIcon className="w-4 h-4 text-white" fill="white" />
               WhatsApp Us
             </a>
             <button onClick={() => scrollTo('packages')} className="btn-outline backdrop-blur-md bg-black/20 border-white/40 justify-center">

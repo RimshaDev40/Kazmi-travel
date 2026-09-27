@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, MessageCircle, CheckCircle2, Sparkles, Layers } from 'lucide-react';
+import { ArrowLeft, ExternalLink, CheckCircle2, Sparkles, Layers } from 'lucide-react';
 import { services } from '../../data/services';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 
 const WHATSAPP = '923001234567';
 
@@ -102,9 +103,9 @@ const ServiceDetailPage = ({ service: propService }) => {
                 href={`https://wa.me/${WHATSAPP}?text=Hi%2C%20I%27m%20interested%20in%20${encodeURIComponent(title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-whatsapp shadow-2xl"
+                className="btn-whatsapp shadow-2xl flex items-center gap-2"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
+                <WhatsAppIcon className="w-4 h-4 text-white" fill="white" />
                 WhatsApp Enquiry
               </a>
             </div>
@@ -203,9 +204,9 @@ const ServiceDetailPage = ({ service: propService }) => {
                   href={`https://wa.me/${WHATSAPP}?text=Hi%2C%20I%20need%20help%20with%20${encodeURIComponent(title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-whatsapp w-full justify-center py-3 text-sm"
+                  className="btn-whatsapp w-full justify-center py-3 text-sm flex items-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4 fill-current" /> Contact via WhatsApp
+                  <WhatsAppIcon className="w-4 h-4 text-white" fill="white" /> Contact via WhatsApp
                 </a>
               </div>
 

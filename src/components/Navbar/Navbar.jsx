@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ChevronDown, Menu, X, MessageSquare,
+  ChevronDown, Menu, X,
   Sparkles, Layers, ArrowRight
 } from 'lucide-react';
 import { services } from '../../data/services';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 
 const WHATSAPP = '923001234567';
 
@@ -58,15 +59,15 @@ const Navbar = () => {
   ];
 
   return (
-    <>
+    <header className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1300px] z-[1000] transition-all duration-300">
       <nav
-        className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-300 ${
+        className={`w-full rounded-full transition-all duration-300 ${
           scrolled || !isHome
-            ? 'bg-[#071420]/95 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] py-3'
-            : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent py-5'
+            ? 'bg-[#071420]/95 backdrop-blur-2xl border border-accent/40 shadow-[0_25px_60px_rgba(0,0,0,0.85)] py-2.5 px-4 sm:px-6'
+            : 'bg-[#071420]/80 backdrop-blur-xl border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.6)] py-3 px-4 sm:px-6'
         }`}
       >
-        <div className="max-w-[1240px] mx-auto px-5 flex items-center justify-between gap-4">
+        <div className="w-full flex items-center justify-between gap-4">
 
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-3 shrink-0 group">
@@ -118,7 +119,7 @@ const Navbar = () => {
                     exit={{ opacity: 0, y: 12, rotateX: -6, scale: 0.95 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     style={{ transformOrigin: "top right", transformStyle: "preserve-3d" }}
-                    className="absolute top-full right-0 lg:right-[-40px] xl:right-0 mt-3 w-[720px] max-w-[92vw] bg-[#071420]/98 backdrop-blur-2xl rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.85)] p-5 z-50 border border-accent/40"
+                    className="absolute top-full right-0 lg:right-[-40px] xl:right-0 mt-3 w-[740px] max-w-[92vw] bg-[#0c1e2e] rounded-2xl shadow-[0_30px_90px_rgba(0,0,0,0.95)] p-5 z-50 border border-accent/40"
                   >
                     <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
                       <div className="flex items-center gap-2">
@@ -127,7 +128,7 @@ const Navbar = () => {
                           Kazmi Paradise Travel Portals &amp; Services
                         </span>
                       </div>
-                      <span className="text-[0.65rem] text-white/50 uppercase tracking-wider font-semibold bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">
+                      <span className="text-[0.65rem] text-white/70 uppercase tracking-wider font-semibold bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15">
                         6 Portals
                       </span>
                     </div>
@@ -143,28 +144,28 @@ const Navbar = () => {
                           <Link
                             to={s.route}
                             onClick={() => setServicesOpen(false)}
-                            className="group relative flex flex-col bg-white/5 border border-white/10 hover:border-accent/60 rounded-xl overflow-hidden shadow-md hover:shadow-[0_12px_28px_rgba(200,151,58,0.32)] hover:-translate-y-1.5 transition-all duration-300 h-full"
+                            className="group relative flex flex-col bg-[#12283c] border border-white/15 hover:border-accent/80 hover:bg-[#18344d] rounded-xl overflow-hidden shadow-lg hover:shadow-[0_12px_28px_rgba(200,151,58,0.35)] hover:-translate-y-1.5 transition-all duration-300 h-full"
                           >
                             {/* Image Preview with Hover Zoom */}
-                            <div className="relative h-24 w-full overflow-hidden bg-black/40 shrink-0">
+                            <div className="relative h-24 w-full overflow-hidden bg-black/60 shrink-0">
                               <img
                                 src={s.image}
                                 alt={s.title}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                               />
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#071420] via-black/20 to-transparent" />
-                              <span className="absolute top-2 left-2 text-base p-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/20 shadow-md">
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#12283c] via-black/20 to-transparent" />
+                              <span className="absolute top-2 left-2 text-base p-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/20 shadow-md">
                                 {s.icon}
                               </span>
                             </div>
 
                             {/* Card Content */}
-                            <div className="p-3 flex-1 flex flex-col justify-between">
+                            <div className="p-3 flex-1 flex flex-col justify-between bg-[#12283c] group-hover:bg-[#18344d] transition-colors">
                               <div>
                                 <h5 className="text-xs font-bold text-white group-hover:text-accent-light transition-colors line-clamp-1 mb-1">
                                   {s.title}
                                 </h5>
-                                <p className="text-[0.65rem] text-white/60 line-clamp-2 leading-tight">
+                                <p className="text-[0.65rem] text-gray-300 line-clamp-2 leading-relaxed">
                                   {s.description}
                                 </p>
                               </div>
@@ -190,7 +191,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="hidden xl:inline-flex btn-whatsapp btn-sm items-center gap-2 shadow-lg hover:shadow-glow-gold transition-all shrink-0 whitespace-nowrap"
           >
-            <MessageSquare className="w-4 h-4 fill-current" />
+            <WhatsAppIcon className="w-4 h-4 text-white" fill="white" />
             WhatsApp Us
           </a>
 
@@ -212,7 +213,7 @@ const Navbar = () => {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="xl:hidden overflow-hidden bg-[#071420]/98 backdrop-blur-2xl border-t border-white/10"
+              className="xl:hidden overflow-hidden bg-[#071420]/98 backdrop-blur-2xl rounded-3xl mt-3 border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.85)]"
             >
               <div className="px-6 py-5 flex flex-col gap-1.5">
                 {navLinks.map(({ label, action }) => (
@@ -245,16 +246,16 @@ const Navbar = () => {
                   href={`https://wa.me/${WHATSAPP}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-whatsapp mt-4 justify-center py-3"
+                  className="btn-whatsapp mt-4 justify-center py-3 flex items-center gap-2"
                 >
-                  <MessageSquare className="w-4 h-4 fill-current" /> WhatsApp Us
+                  <WhatsAppIcon className="w-4 h-4 text-white" fill="white" /> WhatsApp Us
                 </a>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
-    </>
+    </header>
   );
 };
 

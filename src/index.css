@@ -91,24 +91,29 @@
 .whatsapp-float {
   position: fixed;
   bottom: 28px;
-  right: 28px;
+  left: 28px;
   z-index: 9999;
-  width: 56px;
-  height: 56px;
-  background: #25d366;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(37,211,102,0.45);
-  transition: transform 0.3s ease;
-  animation: pulse-wa 2.5s infinite;
+  filter: drop-shadow(0 8px 18px rgba(37, 211, 102, 0.55));
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+  animation: wa-pulse 2.5s infinite ease-in-out;
 }
-.whatsapp-float:hover { transform: scale(1.12); }
+.whatsapp-float:hover {
+  transform: scale(1.18) rotate(6deg);
+  filter: drop-shadow(0 12px 24px rgba(37, 211, 102, 0.8));
+}
 
-@keyframes pulse-wa {
-  0%,100% { box-shadow: 0 6px 20px rgba(37,211,102,0.45); }
-  50%      { box-shadow: 0 6px 36px rgba(37,211,102,0.70); }
+@keyframes wa-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 8px 18px rgba(37, 211, 102, 0.55));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 12px 28px rgba(37, 211, 102, 0.82));
+  }
 }
 
 /* ── Pluto-Style Destination Marquee ───── */
