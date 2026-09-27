@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Plane, ChevronDown, Menu, X, MessageSquare,
+  ChevronDown, Menu, X, MessageSquare,
   Sparkles, Layers, ArrowRight
 } from 'lucide-react';
 import { services } from '../../data/services';
@@ -70,9 +70,11 @@ const Navbar = () => {
 
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-3 shrink-0 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-light to-accent flex items-center justify-center shadow-glow-gold group-hover:scale-105 transition-transform duration-300">
-              <Plane className="w-5 h-5 text-primary-darker -rotate-45" />
-            </div>
+            <img
+              src="/logo.jpeg"
+              alt="Kazmi Paradise Travel & Tours Logo"
+              className="w-11 h-11 object-cover rounded-xl border border-accent/40 shadow-glow-gold group-hover:scale-105 transition-transform duration-300"
+            />
             <div className="leading-tight">
               <span className="block font-heading text-lg font-extrabold text-white tracking-tight group-hover:text-accent-light transition-colors whitespace-nowrap">
                 Kazmi Paradise
@@ -111,37 +113,68 @@ const Navbar = () => {
               <AnimatePresence>
                 {servicesOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 12, scale: 0.96 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-3 w-[620px] bg-[#071420]/95 backdrop-blur-2xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-5 z-50 border border-accent/30"
+                    initial={{ opacity: 0, y: 20, rotateX: -10, scale: 0.94 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 12, rotateX: -6, scale: 0.95 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transformOrigin: "top right", transformStyle: "preserve-3d" }}
+                    className="absolute top-full right-0 lg:right-[-40px] xl:right-0 mt-3 w-[720px] max-w-[92vw] bg-[#071420]/98 backdrop-blur-2xl rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.85)] p-5 z-50 border border-accent/40"
                   >
                     <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-                      <p className="text-[0.7rem] text-accent-light font-bold uppercase tracking-widest flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-accent-light" /> Kazmi Paradise Travel Portals &amp; Services
-                      </p>
-                      <span className="text-[0.65rem] text-white/50 uppercase tracking-wider font-semibold">6 Services</span>
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-accent-light animate-pulse" />
+                        <span className="text-xs text-accent-light font-bold uppercase tracking-wider">
+                          Kazmi Paradise Travel Portals &amp; Services
+                        </span>
+                      </div>
+                      <span className="text-[0.65rem] text-white/50 uppercase tracking-wider font-semibold bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">
+                        6 Portals
+                      </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3.5">
-                      {services.map((s) => (
-                        <Link
+                    <div className="grid grid-cols-3 gap-3.5">
+                      {services.map((s, idx) => (
+                        <motion.div
                           key={s.id}
-                          to={s.route}
-                          className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-accent/20 hover:border-accent/50 text-white transition-all group backdrop-blur-md shadow-sm"
+                          initial={{ opacity: 0, y: 15, scale: 0.93 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          transition={{ duration: 0.3, delay: idx * 0.04, ease: "easeOut" }}
                         >
-                          <span className="text-xl group-hover:scale-110 transition-transform shrink-0 p-1.5 rounded-lg bg-white/5">{s.icon}</span>
-                          <div className="flex-1 min-w-0">
-                            <span className="block text-xs font-bold text-white group-hover:text-accent-light transition-colors truncate">
-                              {s.title}
-                            </span>
-                            <span className="block text-[0.63rem] text-white/50 group-hover:text-white/80 transition-colors truncate">
-                              Access Details ↗
-                            </span>
-                          </div>
-                          <ArrowRight className="w-3.5 h-3.5 text-accent-light opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all shrink-0" />
-                        </Link>
+                          <Link
+                            to={s.route}
+                            onClick={() => setServicesOpen(false)}
+                            className="group relative flex flex-col bg-white/5 border border-white/10 hover:border-accent/60 rounded-xl overflow-hidden shadow-md hover:shadow-[0_12px_28px_rgba(200,151,58,0.32)] hover:-translate-y-1.5 transition-all duration-300 h-full"
+                          >
+                            {/* Image Preview with Hover Zoom */}
+                            <div className="relative h-24 w-full overflow-hidden bg-black/40 shrink-0">
+                              <img
+                                src={s.image}
+                                alt={s.title}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#071420] via-black/20 to-transparent" />
+                              <span className="absolute top-2 left-2 text-base p-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/20 shadow-md">
+                                {s.icon}
+                              </span>
+                            </div>
+
+                            {/* Card Content */}
+                            <div className="p-3 flex-1 flex flex-col justify-between">
+                              <div>
+                                <h5 className="text-xs font-bold text-white group-hover:text-accent-light transition-colors line-clamp-1 mb-1">
+                                  {s.title}
+                                </h5>
+                                <p className="text-[0.65rem] text-white/60 line-clamp-2 leading-tight">
+                                  {s.description}
+                                </p>
+                              </div>
+                              <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[0.65rem] font-bold text-accent-light group-hover:text-amber-300">
+                                <span>Explore Portal</span>
+                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                              </div>
+                            </div>
+                          </Link>
+                        </motion.div>
                       ))}
                     </div>
                   </motion.div>
@@ -194,14 +227,17 @@ const Navbar = () => {
                 <p className="text-accent-light text-xs font-bold uppercase tracking-widest px-3 pt-3 pb-1 opacity-80 flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5" /> Our Services
                 </p>
-                <div className="grid grid-cols-1 gap-2 px-2">
+                <div className="grid grid-cols-2 gap-2 px-1">
                   {services.map((s) => (
                     <Link
                       key={s.id}
                       to={s.route}
-                      className="text-white/80 text-sm py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:text-accent-light transition-all flex items-center gap-3"
+                      className="text-white text-xs p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-accent/20 hover:border-accent/40 transition-all flex flex-col gap-1.5"
                     >
-                      <span>{s.icon}</span> {s.title}
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">{s.icon}</span>
+                        <span className="font-bold text-white truncate">{s.title}</span>
+                      </div>
                     </Link>
                   ))}
                 </div>

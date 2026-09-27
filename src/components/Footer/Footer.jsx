@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Plane, Phone, MessageCircle, Mail, MapPin, ChevronRight } from 'lucide-react';
+import { Phone, MessageCircle, Mail, MapPin, ChevronRight } from 'lucide-react';
 import { services } from '../../data/services';
 
 const WHATSAPP = '923001234567';
@@ -16,9 +16,11 @@ const Footer = () => {
           {/* COL 1: BRAND */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-light to-accent flex items-center justify-center shadow-glow-gold">
-                <Plane className="w-5 h-5 text-primary-darker -rotate-45" />
-              </div>
+              <img
+                src="/logo.jpeg"
+                alt="Kazmi Paradise Travel & Tours Logo"
+                className="w-10 h-10 object-cover rounded-xl border border-accent/40 shadow-glow-gold"
+              />
               <div className="leading-tight">
                 <span className="block font-heading text-lg font-bold text-white">Kazmi Paradise</span>
                 <span className="block text-[0.6rem] text-accent-light font-semibold uppercase tracking-widest">Travel &amp; Tours</span>
