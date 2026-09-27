@@ -59,7 +59,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[1300px] z-[1000] transition-all duration-300">
+    <header className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[98%] max-w-[1450px] z-[1000] transition-all duration-300">
       <nav
         className={`w-full rounded-full transition-all duration-300 ${
           scrolled || !isHome
