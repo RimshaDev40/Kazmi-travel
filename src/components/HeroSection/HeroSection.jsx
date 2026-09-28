@@ -1,17 +1,56 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight, Compass, Award, Users, Layers, Globe } from 'lucide-react';
 import WhatsAppIcon from '../common/WhatsAppIcon';
 
 const WHATSAPP = '923001234567';
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.15 } },
-};
-const item = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } };
+const slides = [
+  {
+    id: 1,
+    badge: 'Trusted Travel & Tourism Experts',
+    title: 'Your Trusted Partner in',
+    highlight: 'Travel & Tourism',
+    description: 'Kazmi Paradise Travel & Tours offers comprehensive travel solutions — Umrah packages, visa services, hotel allotments and powerful B2B portals.',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80'
+  },
+  {
+    id: 2,
+    badge: "Pakistan's #1 B2B Umrah Portal",
+    title: 'Direct Saudi Allotments &',
+    highlight: 'Umrah & Hajj Portals',
+    description: 'Direct Saudi Ministry authorization, instant BRN generation, VIP hotel rooms in Makkah & Madinah, and group seat allotments.',
+    image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=1920&q=80'
+  },
+  {
+    id: 3,
+    badge: 'National B2B Wholesaler of the Year',
+    title: 'Luxury Corporate Travel &',
+    highlight: 'Corporate Wholesaler',
+    description: 'Tailored corporate travel management, group flight seat contracts, luxury concierge services, and 24/7 dedicated support.',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920&q=80'
+  },
+  {
+    id: 4,
+    badge: 'Powerful Sub-Agent Engine',
+    title: 'Next-Gen AI Powered',
+    highlight: 'AI Travel Ecosystem',
+    description: 'Empowering 500+ travel agencies across Pakistan with real-time flight API synchronization, instant wallet credit, and automated ticketing.',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80'
+  }
+];
 
 const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Fast & Energetic auto-play slideshow loop every 2.2 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 2200);
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const stats = [
@@ -27,62 +66,70 @@ const HeroSection = () => {
       className="relative min-h-screen flex items-center overflow-hidden w-full"
       style={{ background: 'linear-gradient(135deg,#071420 0%,#0f2438 40%,#1a3c5e 80%,#071420 100%)' }}
     >
-      {/* Background image overlay - High Visibility (65% Opacity) */}
-      <div
-        className="absolute inset-0 opacity-65 transition-all duration-700"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-      {/* Lightened Dark Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#071420]/85 via-[#0f2438]/60 to-[#071420]/20" />
+      {/* Fast & Smooth Background Image Carousel */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.06 }}
+          animate={{ opacity: 0.65, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url('${slides[currentSlide].image}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      </AnimatePresence>
 
-      {/* Dot pattern */}
+      {/* Dark Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#071420]/95 via-[#0f2438]/75 to-[#071420]/30" />
+
+      {/* Dot Pattern */}
       <div className="absolute inset-0 pattern-dots opacity-20 pointer-events-none" />
 
-      {/* Floating blobs - strictly contained */}
-      <div className="absolute right-0 top-[-100px] w-[400px] h-[400px] rounded-full opacity-[0.08] animate-float pointer-events-none overflow-hidden"
-        style={{ background: 'radial-gradient(circle,#c8973a,transparent)' }} />
-      <div className="absolute left-0 bottom-[-80px] w-[300px] h-[300px] rounded-full opacity-[0.06] animate-float-slow pointer-events-none overflow-hidden"
-        style={{ background: 'radial-gradient(circle,#245280,transparent)' }} />
+      {/* Ambient Glow Orbs */}
+      <div className="absolute right-10 top-1/4 w-[450px] h-[450px] rounded-full bg-emerald-500/10 blur-[140px] pointer-events-none" />
 
-      {/* CONTENT - STRICTLY LEFT ALIGNED & FULLY RESPONSIVE */}
+      {/* CONTENT */}
       <div className="relative z-10 max-w-[1200px] w-full mx-auto px-5 sm:px-6 pt-28 sm:pt-32 pb-16 sm:pb-20 text-left">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="max-w-[700px] flex flex-col items-start text-left"
-        >
-          {/* Badge */}
-          <motion.div variants={item}
-            className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent-light px-3.5 py-1.5 rounded-full text-[0.7rem] sm:text-xs font-bold tracking-widest uppercase mb-5 sm:mb-6 backdrop-blur-md self-start shadow-sm"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-accent-light animate-pulse" />
-            Trusted Travel &amp; Tourism Experts
-          </motion.div>
+        <div className="max-w-[720px] flex flex-col items-start text-left min-h-[420px] justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, y: 15, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -10, filter: 'blur(2px)' }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="w-full"
+            >
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent-light px-3.5 py-1.5 rounded-full text-[0.7rem] sm:text-xs font-bold tracking-widest uppercase mb-5 sm:mb-6 backdrop-blur-md self-start shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-accent-light animate-pulse" />
+                {slides[currentSlide].badge}
+              </div>
 
-          {/* Heading */}
-          <motion.h1 variants={item}
-            className="font-heading font-extrabold text-white leading-[1.14] mb-4 sm:mb-5 text-left drop-shadow-lg"
-            style={{ fontSize: 'clamp(2.1rem, 5.2vw, 4.1rem)' }}
-          >
-            Your Trusted Partner in{' '}
-            <span className="text-gold-gradient">Travel &amp; Tourism</span>
-          </motion.h1>
+              {/* Heading */}
+              <h1
+                className="font-heading font-extrabold text-white leading-[1.14] mb-4 sm:mb-5 text-left drop-shadow-lg"
+                style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.8rem)' }}
+              >
+                {slides[currentSlide].title}{' '}
+                <span className="text-gold-gradient block sm:inline">
+                  {slides[currentSlide].highlight}
+                </span>
+              </h1>
 
-          {/* Description - Justified on Tablet/Desktop, Clean on Mobile */}
-          <motion.p variants={item}
-            className="text-white text-base sm:text-lg leading-relaxed mb-7 sm:mb-9 max-w-[580px] text-left sm:text-justify drop-shadow font-medium"
-          >
-            Kazmi Paradise Travel &amp; Tours offers comprehensive travel solutions — Umrah packages,
-            visa services, hotel allotments and powerful B2B portals. Let us make your journey unforgettable.
-          </motion.p>
+              {/* Description */}
+              <p className="text-white/90 text-base sm:text-lg leading-relaxed mb-7 sm:mb-9 max-w-[620px] text-left drop-shadow font-medium">
+                {slides[currentSlide].description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Buttons - Clean Responsive Flex */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 sm:gap-3.5 mb-10 sm:mb-14 w-full max-w-[580px]">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 sm:gap-3.5 mb-8 sm:mb-10 w-full max-w-[580px]">
             <button
               onClick={() => scrollTo('services')}
               className="btn-primary group shadow-2xl justify-center"
@@ -103,11 +150,26 @@ const HeroSection = () => {
             <button onClick={() => scrollTo('packages')} className="btn-outline backdrop-blur-md bg-black/20 border-white/40 justify-center">
               Explore Packages
             </button>
-          </motion.div>
+          </div>
 
-          {/* Stats glass bar - 100% No Overlap Responsive Grid */}
-          <motion.div
-            variants={item}
+          {/* Slide Aesthetic Pill Indicators */}
+          <div className="flex items-center gap-2.5 mb-8">
+            {slides.map((s, idx) => (
+              <button
+                key={s.id}
+                onClick={() => setCurrentSlide(idx)}
+                className={`h-2 rounded-full transition-all duration-500 ${
+                  currentSlide === idx
+                    ? 'w-10 bg-gradient-to-r from-emerald-400 to-teal-300 shadow-[0_0_12px_rgba(37,211,102,0.6)]'
+                    : 'w-2.5 bg-white/30 hover:bg-white/60'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Stats Glass Bar */}
+          <div
             className="grid grid-cols-2 sm:grid-cols-4 gap-y-3 sm:gap-y-0 divide-x-0 sm:divide-x divide-white/10 rounded-2xl overflow-hidden w-full max-w-[580px] shadow-2xl p-3 sm:p-0"
             style={{ background: 'rgba(7,20,32,0.80)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.18)' }}
           >
@@ -121,11 +183,11 @@ const HeroSection = () => {
                 </div>
               );
             })}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity z-10"
         onClick={() => scrollTo('about')}
