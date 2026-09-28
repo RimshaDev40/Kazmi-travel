@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronDown, Menu, X,
-  Sparkles, Layers, ArrowRight
+  Sparkles, Layers, ArrowRight, CheckCircle2
 } from 'lucide-react';
 import { services } from '../../data/services';
 import WhatsAppIcon from '../common/WhatsAppIcon';
@@ -123,8 +123,8 @@ const Navbar = () => {
                   >
                     <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
                       <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-accent-light animate-pulse" />
-                        <span className="text-xs text-accent-light font-bold uppercase tracking-wider">
+                        <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+                        <span className="text-xs text-amber-400 font-extrabold uppercase tracking-wider">
                           Kazmi Paradise Travel Portals &amp; Services
                         </span>
                       </div>
@@ -134,49 +134,72 @@ const Navbar = () => {
                     </div>
 
                     <div className="grid grid-cols-3 gap-3.5">
-                      {services.map((s, idx) => (
-                        <motion.div
-                          key={s.id}
-                          initial={{ opacity: 0, y: 15, scale: 0.93 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: 0.3, delay: idx * 0.04, ease: "easeOut" }}
-                        >
-                          <Link
-                            to={s.route}
-                            onClick={() => setServicesOpen(false)}
-                            className="group relative flex flex-col bg-[#12283c] border border-white/15 hover:border-accent/80 hover:bg-[#18344d] rounded-xl overflow-hidden shadow-lg hover:shadow-[0_12px_28px_rgba(200,151,58,0.35)] hover:-translate-y-1.5 transition-all duration-300 h-full"
-                          >
-                            {/* Image Preview with Hover Zoom */}
-                            <div className="relative h-24 w-full overflow-hidden bg-black/60 shrink-0">
-                              <img
-                                src={s.image}
-                                alt={s.title}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#12283c] via-black/20 to-transparent" />
-                              <span className="absolute top-2 left-2 text-base p-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/20 shadow-md">
-                                {s.icon}
-                              </span>
-                            </div>
+                      {services.map((s, idx) => {
+                        const isActive = location.pathname === s.route || location.pathname === s.route + '/';
 
-                            {/* Card Content */}
-                            <div className="p-3 flex-1 flex flex-col justify-between bg-[#12283c] group-hover:bg-[#18344d] transition-colors">
-                              <div>
-                                <h5 className="text-xs font-bold text-white group-hover:text-accent-light transition-colors line-clamp-1 mb-1">
-                                  {s.title}
-                                </h5>
-                                <p className="text-[0.65rem] text-gray-300 line-clamp-2 leading-relaxed">
-                                  {s.description}
-                                </p>
+                        return (
+                          <motion.div
+                            key={s.id}
+                            initial={{ opacity: 0, y: 15, scale: 0.93 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            transition={{ duration: 0.3, delay: idx * 0.04, ease: "easeOut" }}
+                          >
+                            <Link
+                              to={s.route}
+                              onClick={() => setServicesOpen(false)}
+                              className={`group relative flex flex-col rounded-xl overflow-hidden shadow-lg transition-all duration-300 h-full ${
+                                isActive
+                                  ? 'bg-[#1a3854] border-2 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.45)] ring-2 ring-amber-400/30 -translate-y-1'
+                                  : 'bg-[#12283c] border border-white/15 hover:border-accent/80 hover:bg-[#18344d] hover:-translate-y-1.5 hover:shadow-[0_12px_28px_rgba(200,151,58,0.35)]'
+                              }`}
+                            >
+                              {/* Image Preview with Hover Zoom */}
+                              <div className="relative h-24 w-full overflow-hidden bg-black/60 shrink-0">
+                                <img
+                                  src={s.image}
+                                  alt={s.title}
+                                  className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
+                                    isActive ? 'scale-105' : 'group-hover:scale-110'
+                                  }`}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#12283c] via-black/20 to-transparent" />
+                                <span className={`absolute top-2 left-2 text-base p-1 rounded-lg backdrop-blur-md border shadow-md ${
+                                  isActive ? 'bg-amber-400/30 border-amber-400' : 'bg-black/75 border-white/20'
+                                }`}>
+                                  {s.icon}
+                                </span>
                               </div>
-                              <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[0.65rem] font-bold text-accent-light group-hover:text-amber-300">
-                                <span>Explore Portal</span>
-                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+
+                              {/* Card Content */}
+                              <div className={`p-3 flex-1 flex flex-col justify-between transition-colors ${
+                                isActive ? 'bg-[#1a3854]' : 'bg-[#12283c] group-hover:bg-[#18344d]'
+                              }`}>
+                                <div>
+                                  <h5 className={`text-xs font-bold line-clamp-1 mb-1 transition-colors ${
+                                    isActive ? 'text-amber-400 font-extrabold' : 'text-white group-hover:text-accent-light'
+                                  }`}>
+                                    {s.title}
+                                  </h5>
+                                  <p className="text-[0.65rem] text-gray-300 line-clamp-2 leading-relaxed font-medium">
+                                    {s.description}
+                                  </p>
+                                </div>
+
+                                <div className={`mt-2.5 pt-2 border-t flex items-center justify-between text-[0.65rem] font-extrabold ${
+                                  isActive
+                                    ? 'border-amber-400/30 text-amber-300'
+                                    : 'border-white/10 text-accent-light group-hover:text-amber-300'
+                                }`}>
+                                  <span>{isActive ? '✓ Currently Viewing' : 'Explore Portal'}</span>
+                                  <ArrowRight className={`w-3.5 h-3.5 transition-transform ${
+                                    isActive ? 'text-amber-400 translate-x-0.5' : 'group-hover:translate-x-1'
+                                  }`} />
+                                </div>
                               </div>
-                            </div>
-                          </Link>
-                        </motion.div>
-                      ))}
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
                     </div>
                   </motion.div>
                 )}
@@ -229,18 +252,30 @@ const Navbar = () => {
                   <Sparkles className="w-3.5 h-3.5" /> Our Services
                 </p>
                 <div className="grid grid-cols-2 gap-2 px-1">
-                  {services.map((s) => (
-                    <Link
-                      key={s.id}
-                      to={s.route}
-                      className="text-white text-xs p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-accent/20 hover:border-accent/40 transition-all flex flex-col gap-1.5"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm">{s.icon}</span>
-                        <span className="font-bold text-white truncate">{s.title}</span>
-                      </div>
-                    </Link>
-                  ))}
+                  {services.map((s) => {
+                    const isActive = location.pathname === s.route || location.pathname === s.route + '/';
+                    return (
+                      <Link
+                        key={s.id}
+                        to={s.route}
+                        className={`text-xs p-2.5 rounded-xl border transition-all flex flex-col gap-1.5 ${
+                          isActive
+                            ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-extrabold shadow-md'
+                            : 'text-white bg-white/5 border-white/10 hover:bg-accent/20 hover:border-accent/40'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">{s.icon}</span>
+                          <span className="truncate">{s.title}</span>
+                        </div>
+                        {isActive && (
+                          <span className="text-[0.6rem] font-black text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                            <CheckCircle2 className="w-3 h-3" /> Currently Viewing
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
                 </div>
                 <a
                   href={`https://wa.me/${WHATSAPP}`}
