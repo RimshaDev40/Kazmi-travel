@@ -27,30 +27,31 @@ const HomePage = () => {
     <main>
       {/* 1. Hero Section */}
       <HeroSection />
-      {/* 6. 3D Destinations Carousel */}
+      {/* 2. 3D Destinations Carousel */}
       <Destinations />
 
-      {/* 2. About Us */}
+      {/* 3. About Us */}
       <AboutUs />
 
-      {/* 3. Vision & Mission */}
+      {/* 4. Vision & Mission */}
       <VisionMission />
 
-      {/* 4. Our Core Travel Services */}
-      <Services />
+{/* 13. B2B & Customer Portals */}
+      <Portals />
+      
 
-      {/* 5. Live Key Statistics */}
+      {/* 6. Live Key Statistics */}
       <Statistics />
 
     
       {/* 7. Travel & Umrah Packages */}
       <TravelPackages />
 
-       {/* 9. Pluto-Style Animated Curved Connecting Line Timeline */}
-      <JourneyTimeline />
+       {/* 8. Pluto-Style Animated Curved Connecting Line Timeline */}
+      {/* <JourneyTimeline /> */}
 
-      {/* 8. Corporate Travel & B2B Solutions */}
-      <CorporateB2BSection />
+      {/* 9. Corporate Travel & B2B Solutions */}
+      {/* <CorporateB2BSection /> */}
 
      
 
@@ -63,9 +64,11 @@ const HomePage = () => {
       {/* 12. Why Choose Kazmi Paradise */}
       <WhyChooseUs />
 
-      {/* 13. B2B & Customer Portals */}
-      <Portals />
+      
+{/* 5. Our Core Travel Services */}
+      <Services />
 
+      
       {/* 14. Pluto-Style Google Reviews & Ratings Slider */}
       <ReviewsSlider />
 

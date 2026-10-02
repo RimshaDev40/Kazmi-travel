@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { PhoneCall, ShieldCheck, Award, Sparkles, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../SectionHeading/SectionHeading';
 
-const WHATSAPP = '923001234567';
+const WHATSAPP = '923211155050';
 
 const leaders = [
   {
@@ -23,6 +23,7 @@ const leaders = [
     ],
     imageOnLeft: true
   },
+  /* 
   {
     id: 'ali',
     name: 'Muhammad Ali',
@@ -40,6 +41,7 @@ const leaders = [
     ],
     imageOnLeft: false
   }
+  */
 ];
 
 const containerVariants = {
@@ -75,13 +77,13 @@ const TeamSection = () => {
         <SectionHeading
           badge="Our Leadership"
           title="Meet Our Executive Leadership"
-          subtitle="Visionary founders and ground operation heads driving Pakistan's premier B2B travel wholesaler."
+          subtitle="Visionary founders driving Pakistan's premier B2B travel wholesaler."
           light={false}
         />
 
-        {/* Stacked 2 Leaders Showcase with Premium Scroll Animations */}
+        {/* Stacked Leaders Showcase */}
         <div className="flex flex-col gap-20 mt-12">
-          {leaders.map((leader, idx) => (
+          {leaders.map((leader) => (
             <motion.div
               key={leader.id}
               variants={containerVariants}
@@ -93,7 +95,7 @@ const TeamSection = () => {
               {/* Subtle Top Border Highlight */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-amber-400 via-emerald-400 to-amber-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out" />
 
-              {/* Image Column with 3D Float Hover Effect */}
+              {/* Image Column */}
               <motion.div
                 variants={childVariants}
                 className={`lg:col-span-5 relative ${leader.imageOnLeft ? '' : 'lg:order-last'}`}
@@ -138,7 +140,7 @@ const TeamSection = () => {
                 />
               </motion.div>
 
-              {/* Text Column with Staggered Fade Up */}
+              {/* Text Column */}
               <div className="lg:col-span-7 flex flex-col justify-between">
                 <div>
                   <motion.span

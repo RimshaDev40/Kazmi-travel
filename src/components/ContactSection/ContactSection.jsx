@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MessageCircle, Mail, MapPin, Send, CheckCircle2, Sparkles } from 'lucide-react';
+import { Phone, MessageCircle, Mail, MapPin, Send, CheckCircle2, Sparkles, UserCheck } from 'lucide-react';
 import SectionHeading from '../SectionHeading/SectionHeading';
 
-const WHATSAPP = '923001234567';
+const LEADERSHIP_PHONE = '+92 321 115 50 50';
+const OTHER_PHONE = '+92 321 115 40 40';
+const EMAIL_ADDRESS = 'kazmiparadise@hotmail.com';
+const ADDRESS_TEXT = 'Office No. 23 Ground Floor, Mian Trust Hospital, Sargodha Rd, Faisalabad.';
 
 const contactInfo = [
-  { icon: Phone, title: 'Call Us', value: '+92 300 1234567', href: 'tel:+923001234567' },
-  { icon: MessageCircle, title: 'WhatsApp', value: '+92 300 1234567', href: `https://wa.me/${WHATSAPP}` },
-  { icon: Mail, title: 'Email Us', value: 'info@kazmiparadisetravel.com', href: 'mailto:info@kazmiparadisetravel.com' },
-  { icon: MapPin, title: 'Visit Us', value: 'Kazmi Tower, Main Boulevard, Lahore, Pakistan', href: null },
+  { icon: UserCheck, title: 'Leadership Contact', value: LEADERSHIP_PHONE, href: 'tel:+923211155050' },
+  { icon: Phone, title: 'Other Contact', value: OTHER_PHONE, href: 'tel:+923211154040' },
+  { icon: Mail, title: 'Email Us', value: EMAIL_ADDRESS, href: `mailto:${EMAIL_ADDRESS}` },
+  { icon: MapPin, title: 'Visit Us', value: ADDRESS_TEXT, href: null },
 ];
 
 const ContactSection = () => {
@@ -84,7 +87,7 @@ const ContactSection = () => {
                         {info.value}
                       </a>
                     ) : (
-                      <span className="text-sm font-extrabold text-slate-900">{info.value}</span>
+                      <span className="text-sm font-extrabold text-slate-900 leading-snug block">{info.value}</span>
                     )}
                   </div>
                 </motion.div>
@@ -92,7 +95,7 @@ const ContactSection = () => {
             })}
           </motion.div>
 
-          {/* FORM CONTAINER (NO GRADIENT BAR, SOLID CLEAN GOLD TOP BORDER) */}
+          {/* FORM CONTAINER */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -105,7 +108,7 @@ const ContactSection = () => {
                 <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4 animate-bounce" />
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Received!</h3>
                 <p className="text-sm text-slate-500 max-w-md mx-auto mb-6">
-                  Thank you for reaching out. A representative from Kazmi Paradise Travel &amp; Tours will get back to you shortly.
+                  Thank you for reaching out. Your enquiry has been sent to <strong>{EMAIL_ADDRESS}</strong>. A representative will get back to you shortly.
                 </p>
                 <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', subject: '', message: '' }); }} className="btn-primary">
                   Send Another Message
@@ -152,7 +155,7 @@ const ContactSection = () => {
                     <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Phone Number</label>
                     <input
                       type="text"
-                      placeholder="+92 300 0000000"
+                      placeholder="+92 321 0000000"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-400 transition-all"

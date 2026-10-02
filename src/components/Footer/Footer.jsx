@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MessageCircle, Mail, MapPin, ChevronRight } from 'lucide-react';
+import { Phone, MessageCircle, Mail, MapPin, ChevronRight, UserCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { services } from '../../data/services';
 
-const WHATSAPP = '923001234567';
+const LEADERSHIP_PHONE = '+92 321 115 50 50';
+const OTHER_PHONE = '+92 321 115 40 40';
+const WHATSAPP_NUM = '923211155050';
+const EMAIL_ADDRESS = 'kazmiparadise@hotmail.com';
+const ADDRESS_TEXT = 'Office No. 23 Ground Floor, Mian Trust Hospital, Sargodha Rd, Faisalabad.';
 
-// Clean, borderless official glyphs (No inner enclosing circles or squares)
 const FacebookIcon = (props) => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" {...props}>
     <path d="M14 13.5h2.5l1-4H14V7c0-.926.756-1.5 1.5-1.5H18V1.5h-3.5C11.462 1.5 10 3.254 10 6.5v3H7v4h3v10h4V13.5z" />
@@ -68,10 +71,10 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-white/60 text-xs leading-relaxed mb-5">
-              Part of Kazmi Groups of Companies. Premium travel, tourism, Umrah solutions, visa services, and B2B portal management.
+              Part of Kazmi Paradise Group of Companies. Premium travel, tourism, Umrah solutions, visa services, and B2B portal management.
             </p>
 
-            {/* PROMINENT CIRCULAR SOCIAL MEDIA BADGES */}
+            {/* CIRCULAR SOCIAL MEDIA BADGES */}
             <div>
               <span className="block text-[0.68rem] text-amber-400 font-black uppercase tracking-widest mb-3">
                 Follow Us On Social Media
@@ -131,33 +134,37 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* COL 4: CONTACT */}
+          {/* COL 4: CONTACT INFO */}
           <div>
             <h4 className="font-heading text-sm font-bold text-amber-400 uppercase tracking-wider mb-4">Contact Info</h4>
             <ul className="space-y-3 text-xs text-white/70">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>Kazmi Tower, Main Boulevard, Lahore, Pakistan</span>
+                <span>{ADDRESS_TEXT}</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <UserCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                <a href={`tel:${LEADERSHIP_PHONE.replace(/\s+/g, '')}`} className="hover:text-white transition-colors font-bold">{LEADERSHIP_PHONE} (Leadership)</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href="tel:+923001234567" className="hover:text-white transition-colors">+92 300 1234567</a>
+                <a href={`tel:${OTHER_PHONE.replace(/\s+/g, '')}`} className="hover:text-white transition-colors font-semibold">{OTHER_PHONE}</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+92 300 1234567 (WhatsApp)</a>
+                <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{LEADERSHIP_PHONE} (WhatsApp)</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href="mailto:info@kazmiparadisetravel.com" className="hover:text-white transition-colors">info@kazmiparadisetravel.com</a>
+                <a href={`mailto:${EMAIL_ADDRESS}`} className="hover:text-white transition-colors">{EMAIL_ADDRESS}</a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* BOTTOM FOOTER WITH SOCIAL LINKS */}
+        {/* BOTTOM FOOTER */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
-          <p>© {new Date().getFullYear()} Kazmi Paradise Travel &amp; Tours. All rights reserved. Part of Kazmi Groups of Companies.</p>
+          <p>© {new Date().getFullYear()} Kazmi Paradise Travel &amp; Tours. All rights reserved. Part of Kazmi Paradise Group of Companies.</p>
           <div className="flex items-center gap-4">
             {socialLinks.map(({ name, icon: Icon, href }) => (
               <a

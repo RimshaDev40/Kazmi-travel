@@ -8,7 +8,7 @@ import {
 import { services } from '../../data/services';
 import WhatsAppIcon from '../common/WhatsAppIcon';
 
-const WHATSAPP = '923001234567';
+const WHATSAPP = '923211155050';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
