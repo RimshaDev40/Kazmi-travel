@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private Documents & Downloads
+REACT.JS DEVELOPER HIRING TASK.pdf
+ATS Revisions.docx
+*.pdf
+*.docx
+

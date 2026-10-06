@@ -110,10 +110,11 @@ const row2Reviews = [
 ];
 
 const ReviewCard = ({ item }) => (
-  <motion.div
-    whileHover={{ scale: 1.05, y: -8 }}
-    transition={{ duration: 0.3 }}
-    className="w-[340px] sm:w-[380px] shrink-0 bg-white text-slate-900 rounded-3xl p-6 shadow-xl hover:shadow-[0_20px_45px_rgba(245,158,11,0.25)] transition-all duration-300 border border-slate-100 flex flex-col justify-between select-none cursor-pointer"
+  <div
+    className="w-[340px] sm:w-[380px] shrink-0 bg-white text-slate-900 rounded-3xl p-6 shadow-xl
+               hover:shadow-[0_25px_60px_rgba(245,158,11,0.3)] hover:scale-105 hover:-translate-y-2.5
+               transition-all duration-300 ease-out border border-slate-100/90
+               flex flex-col justify-between select-none cursor-pointer relative z-10 hover:z-50 will-change-transform"
   >
     <div>
       {/* Header */}
@@ -144,9 +145,9 @@ const ReviewCard = ({ item }) => (
 
       {/* Quote */}
       <div className="relative pt-1">
-        <Quote className="w-5 h-5 text-slate-200 absolute -top-2 -left-1 rotate-180 pointer-events-none" />
+        <Quote className="w-5 h-5 text-amber-500/20 absolute -top-2 -left-1 rotate-180 pointer-events-none" />
         <p className="text-slate-600 text-xs sm:text-sm leading-relaxed relative z-10 pl-2 line-clamp-4 font-medium">
-          &quot;{item.review}&quot;
+          {item.review}
         </p>
       </div>
     </div>
@@ -157,7 +158,7 @@ const ReviewCard = ({ item }) => (
         <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> Verified Google Review
       </span>
     </div>
-  </motion.div>
+  </div>
 );
 
 const ReviewsSlider = () => {
@@ -166,6 +167,30 @@ const ReviewsSlider = () => {
 
   return (
     <section className="py-28 bg-[#071420] text-white relative overflow-hidden">
+      {/* CSS Keyframe animations for seamless hover-paused marquee */}
+      <style>{`
+        @keyframes marqueeLeft {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-33.3333%, 0, 0); }
+        }
+        @keyframes marqueeRight {
+          0% { transform: translate3d(-33.3333%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+        .marquee-left-track {
+          animation: marqueeLeft 7.5s linear infinite;
+          will-change: transform;
+        }
+        .marquee-right-track {
+          animation: marqueeRight 7.5s linear infinite;
+          will-change: transform;
+        }
+        .marquee-left-track:hover,
+        .marquee-right-track:hover {
+          animation-play-state: paused !important;
+        }
+      `}</style>
+
       {/* Glow Effects */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
@@ -208,39 +233,23 @@ const ReviewsSlider = () => {
       </div>
 
       {/* Dual Row Continuous Infinite Horizontal Marquee */}
-      <div className="space-y-6 overflow-hidden py-4 relative">
+      <div className="space-y-2 relative py-2">
         {/* ROW 1: Right to Left */}
-        <div className="flex gap-6 overflow-hidden">
-          <motion.div
-            className="flex gap-6 shrink-0"
-            animate={{ x: [0, '-33.33%'] }}
-            transition={{
-              duration: 35,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-          >
+        <div className="overflow-hidden py-7 -my-4">
+          <div className="flex gap-6 shrink-0 marquee-left-track">
             {row1Duplicated.map((item, idx) => (
               <ReviewCard key={`r1-${idx}`} item={item} />
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* ROW 2: Left to Right */}
-        <div className="flex gap-6 overflow-hidden">
-          <motion.div
-            className="flex gap-6 shrink-0"
-            animate={{ x: ['-33.33%', 0] }}
-            transition={{
-              duration: 35,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-          >
+        <div className="overflow-hidden py-7 -my-4">
+          <div className="flex gap-6 shrink-0 marquee-right-track">
             {row2Duplicated.map((item, idx) => (
               <ReviewCard key={`r2-${idx}`} item={item} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 

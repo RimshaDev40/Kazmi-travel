@@ -158,6 +158,8 @@
   position: relative;
   transition: none;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .pluto-card {
@@ -168,7 +170,10 @@
   position: relative;
   box-shadow: 0 12px 40px rgba(0,0,0,0.22);
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .pluto-card:hover {
@@ -180,10 +185,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  backface-visibility: hidden;
+  pointer-events: none;
 }
 
 .pluto-card:hover .pluto-card-img {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
